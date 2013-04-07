@@ -16,12 +16,12 @@ namespace XbyakSharp
         }
 
         [Flags]
-        enum AVXtype : uint
+        public enum AVXType : uint
         {
             PpNone = 0x01,
-            Pp66 = 0x02,
-            PpF3 = 0x04,
-            PpF2 = 0x08,
+            Pp_66 = 0x02,
+            Pp_F3 = 0x04,
+            Pp_F2 = 0x08,
             MmReserved = 0x10,
             Mm_0F = 0x20,
             Mm_0F38 = 0x40,
@@ -155,16 +155,16 @@ namespace XbyakSharp
 
         private void Vex(bool r, int idx, bool is256, int type, bool x = false, bool b = false, int w = 1)
         {
-            uint pp = (type & (uint)AVXtype.Pp66) != 0 ? 1U : (type & (uint)AVXtype.PpF3) != 0 ? 2U : (type & (uint)AVXtype.PpF2) != 0 ? 3U : 0;
+            uint pp = (type & (uint)AVXType.Pp_66) != 0 ? 1U : (type & (uint)AVXType.Pp_F3) != 0 ? 2U : (type & (uint)AVXType.Pp_F2) != 0 ? 3U : 0;
             uint vvvv = (uint)((((~idx) & 15) << 3) | (is256 ? 4U : 0) | pp);
-            if (!b && !x && w == 0 && (type & (uint)AVXtype.Mm_0F) != 0)
+            if (!b && !x && w == 0 && (type & (uint)AVXType.Mm_0F) != 0)
             {
                 Db(0xC5);
                 Db((int)((r ? 0 : 0x80) | vvvv));
             }
             else
             {
-                uint mmmm = (type & (uint)AVXtype.Mm_0F) != 0 ? 1U : (type & (uint)AVXtype.Mm_0F38) != 0 ? 2U : (type & (uint)AVXtype.Mm_0F3A) != 0 ? 3U : 0;
+                uint mmmm = (type & (uint)AVXType.Mm_0F) != 0 ? 1U : (type & (uint)AVXType.Mm_0F38) != 0 ? 2U : (type & (uint)AVXType.Mm_0F3A) != 0 ? 3U : 0;
                 Db(0xC4);
                 Db((int)((r ? 0 : 0x80) | (x ? 0 : 0x40) | (b ? 0 : 0x20) | mmmm));
                 Db((int)((w << 7) | vvvv));
@@ -577,7 +577,7 @@ namespace XbyakSharp
             Db(code2 | reg.IDX);
         }
 
-        public void OpAVX_X_X_XM(Xmm x1, IOperand op1, IOperand op2, int type, int code0, bool supportYMM, int w = -1)
+        public void OpAVX_X_X_XM(Xmm x1, IOperand op1, IOperand op2, AVXType type, int code0, bool supportYMM, int w = -1)
         {
             Xmm x2 = null;
             IOperand op = null;
@@ -627,7 +627,7 @@ namespace XbyakSharp
             {
                 w = 0;
             }
-            Vex(x1.IsExtIdx(), x2.IDX, x1.IsYMM(), type, x, b, w);
+            Vex(x1.IsExtIdx(), x2.IDX, x1.IsYMM(), (int)type, x, b, w);
             Db(code0);
             if (op.IsMEM())
             {
@@ -641,12 +641,12 @@ namespace XbyakSharp
             }
         }
 
-        public void OpAVX_X_X_XMcvt(Xmm x1, IOperand op1, IOperand op2, bool cvt, Operand.KindType kind, int type, int code0, bool supportYMM, int w = -1)
+        public void OpAVX_X_X_XMcvt(Xmm x1, IOperand op1, IOperand op2, bool cvt, Operand.KindType kind, AVXType type, int code0, bool supportYMM, int w = -1)
         {
             OpAVX_X_X_XM(x1, op1, cvt ? (kind == Operand.KindType.XMM ? new Xmm(op2.IDX) : new Ymm(op2.IDX)) : op2, type, code0, supportYMM, w);
         }
 
-        public void OpAVX_X_XM_IMM(Xmm x, IOperand op, int type, int code, bool supportYMM, int w = -1, int imm = None)
+        public void OpAVX_X_XM_IMM(Xmm x, IOperand op, AVXType type, int code, bool supportYMM, int w = -1, int imm = None)
         {
             OpAVX_X_X_XM(x, x.IsXMM() ? xmm0 : ymm0, op, type, code, supportYMM, w);
             if (imm != None)
