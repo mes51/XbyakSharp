@@ -352,7 +352,10 @@ namespace XbyakSharp
             {
                 OpModM((Address)op1, op2.ToReg(), 0x0F, code | 1);
             }
-            throw new ArgumentException("op1 and op2 are bad combination");
+            else
+            {
+                throw new ArgumentException("op1 and op2 are bad combination");
+            }
         }
 
         private void OpExt(IOperand op, Mmx mmx, int code, int imm, bool hasMMX2 = false)
@@ -398,7 +401,7 @@ namespace XbyakSharp
         {
             VerifyMemHasSize(op);
             OpR_ModM(op, 0, ext, ((int)BinToHex.B11000000 | ((imm == 1 ? 1 : 0) << 4)));
-            if (imm != 0)
+            if (imm != 1)
             {
                 Db(imm);
             }
@@ -421,7 +424,7 @@ namespace XbyakSharp
             }
             else if (condM)
             {
-                OpModM((Address)op1, op2.ToReg(), code0, code1, code2);
+                OpModM((Address)op2, op1.ToReg(), code0, code1, code2);
             }
             else
             {
@@ -436,6 +439,10 @@ namespace XbyakSharp
                 throw new ArgumentException("bad combination", "cl");
             }
             OpModRM(reg, op, op.IsREG(16 | i32e) && op.Bit == reg.Bit, op.IsMEM() && reg.IsREG(16 | i32e), 0x0F, code | (cl != null ? 1 : 0));
+            if (cl == null)
+            {
+                Db(imm);
+            }
         }
 
         private void OpRM_RM(IOperand op1, IOperand op2, int code)
@@ -481,7 +488,7 @@ namespace XbyakSharp
         private void OpIncDec(IOperand op, int code, int ext)
         {
             VerifyMemHasSize(op);
-            if (Environment.Is64BitProcess)
+            if (!Environment.Is64BitProcess)
             {
                 if (op.IsREG() && !op.IsBit(8))
                 {

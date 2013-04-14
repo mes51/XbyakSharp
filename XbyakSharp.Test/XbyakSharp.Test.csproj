@@ -96,6 +96,7 @@
       <DependentUpon>ExpectedData.resx</DependentUpon>
     </Compile>
     <Compile Include="JmpTest.cs" />
+    <Compile Include="MnemonicTest.cs" />
     <Compile Include="MovTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MMXTest.cs" />
@@ -120,6 +121,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mov_expected_64bit_2.lst" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mnemonic_32bit.lst" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mnemonic_64bit.lst" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mnemonic_avx_32bit.lst" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mnemonic_avx_64bit.lst" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

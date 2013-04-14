@@ -12,8 +12,20 @@ BaseVersion
 
 Xbyak ver 3.80をベースにしています。
 
-Use Library
+Difference
+------------
+
+オリジナルのXbyakで使用されているいくつかのキーワードはC#で予約語となっているため、先頭に@が付いています
+ * byte
+ * lock
+
+Original Library
 ------------
 
 Xbyak([https://github.com/herumi/xbyak](https://github.com/herumi/xbyak))  
 Copyright (c) 2007-2011 MITSUNARI Shigeo
+
+License
+------------
+
+修正BSD([http://opensource.org/licenses/BSD-3-Clause](http://opensource.org/licenses/BSD-3-Clause))

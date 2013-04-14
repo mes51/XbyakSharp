@@ -61,6 +61,279 @@ namespace XbyakSharp.Test {
         }
         
         /// <summary>
+        ///   FFE4
+        ///FFE0
+        ///FFD7
+        ///FFD0
+        ///FF640803
+        ///FF640803
+        ///FF640803
+        ///FF540803
+        ///66FFD6
+        ///66FFD0
+        ///FF1523010000
+        ///E800000000
+        ///37
+        ///D50A
+        ///D40A
+        ///3F
+        ///27
+        ///2F
+        ///61
+        ///9D
+        ///60
+        ///60
+        ///9C
+        ///61
+        ///6698
+        ///99
+        ///F8
+        ///FC
+        ///FA
+        ///F5
+        ///0FA2
+        ///6699
+        ///98
+        ///9F
+        ///90
+        ///9E
+        ///F9
+        ///FD
+        ///FB
+        ///0F77
+        ///F390
+        ///0FAEF8
+        ///0FAEE8
+        ///0FAEF0
+        ///0F01C8
+        ///0F01C9
+        ///0F32
+        ///0F33
+        ///0F31
+        ///0F01F9
+        ///0F0B
+        ///9B
+        ///9B
+        ///0F09
+        ///0F30
+        ///D7
+        ///9D
+        ///9C
+        ///0F01D0
+        ///C5FC77
+        ///C5F877
+        ///D9F0
+        ///D9E1
+        ///DEC1
+        ///D9E0
+        ///D8D1
+        ///D8D9
+        ///DED9
+        ///D9FF
+        ///D9F6
+        ///DEF9
+        ///DEF1
+        ///D9F7
+        ///9BDBE3
+        ///DBE3
+        ///D9E8
+        ///D9E9
+        ///D9EA
+        ///D9EB
+        ///D9EC
+        ///D9ED
+        ///D9EE
+        ///DEC9
+        ///D9D0
+        ///D9F3
+        ///D9 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string mnemonic_32bit {
+            get {
+                return ResourceManager.GetString("mnemonic_32bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   FFE4
+        ///41FFE2
+        ///FFE0
+        ///FFD1
+        ///41FFD6
+        ///FFD0
+        ///67FF640803
+        ///42FF643A12
+        ///67FF640803
+        ///42FF643A12
+        ///67FF640803
+        ///42FF643A12
+        ///67FF540803
+        ///66FFD1
+        ///66FFD0
+        ///FF142523010000
+        ///42FF543A12
+        ///6641FFD2
+        ///E800000000
+        ///FF242578563412
+        ///FF142578563412
+        ///4898
+        ///4899
+        ///6698
+        ///99
+        ///F8
+        ///FC
+        ///FA
+        ///F5
+        ///0FA2
+        ///6699
+        ///98
+        ///9F
+        ///90
+        ///9E
+        ///F9
+        ///FD
+        ///FB
+        ///0F77
+        ///F390
+        ///0FAEF8
+        ///0FAEE8
+        ///0FAEF0
+        ///0F01C8
+        ///0F01C9
+        ///0F32
+        ///0F33
+        ///0F31
+        ///0F01F9
+        ///0F0B
+        ///9B
+        ///9B
+        ///0F09
+        ///0F30
+        ///D7
+        ///9D
+        ///9C
+        ///0F01D0
+        ///C5FC77
+        ///C5F877
+        ///D9F0
+        ///D9E1
+        ///DEC1
+        ///D9E0
+        ///D8D1
+        ///D8D9
+        ///DED9
+        ///D9FF
+        ///D9F6
+        ///DEF9
+        ///DEF1
+        ///D9F7
+        /// [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string mnemonic_64bit {
+            get {
+                return ResourceManager.GetString("mnemonic_64bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   C5E158DA
+        ///C5C958740803
+        ///C5E158F6
+        ///C5D1587C0803
+        ///C5DD58640803
+        ///C5C558F8
+        ///C5D558440803
+        ///C5F558D2
+        ///C5F058CA
+        ///C5E858540803
+        ///C5C858E1
+        ///C5D858640803
+        ///C5E4585C0803
+        ///C5F458CF
+        ///C5C4585C0803
+        ///C5D458FC
+        ///C5CB58F7
+        ///C5D3586C0803
+        ///C5E358D7
+        ///C5EB58440803
+        ///C5FA58C0
+        ///C5F2584C0803
+        ///C5FA58D7
+        ///C5EA58540803
+        ///C5C95CF1
+        ///C5E95C540803
+        ///C5C95CCF
+        ///C5C95C540803
+        ///C5F55C4C0803
+        ///C5CD5CF3
+        ///C5ED5C640803
+        ///C5DD5CD1
+        ///C5E85CD3
+        ///C5E05C5C0803
+        ///C5C05CCD
+        ///C5E05C6C0803
+        ///C5F45C4C0803
+        ///C5EC5CD5
+        ///C5E45C5C0803
+        ///C5F45CEA
+        ///C5F35CCE
+        ///C5D35C6C0803
+        ///C5D35CF9 [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string mnemonic_avx_32bit {
+            get {
+                return ResourceManager.GetString("mnemonic_avx_32bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   C5E158DA
+        ///67C5C958740803
+        ///C4A14958743A12
+        ///C4C14958F7
+        ///C51158EA
+        ///67C51958640803
+        ///C42101587C3A12
+        ///C4413958C5
+        ///C5E958E9
+        ///67C5F158540803
+        ///C4A15958543A12
+        ///C4C17158F4
+        ///C5A158E3
+        ///67C5B1584C0803
+        ///C4A101585C3A12
+        ///C4C11158FC
+        ///C54158F5
+        ///67C569584C0803
+        ///C42179587C3A12
+        ///C4417958D0
+        ///C50958CA
+        ///67C50158440803
+        ///C4212958543A12
+        ///C4412958C8
+        ///67C5F5584C0803
+        ///C5C558FA
+        ///C4A14D58743A12
+        ///C5F558CC
+        ///67C5CD58740803
+        ///C5DD58E2
+        ///C4A165585C3A12
+        ///C5DD58E1
+        ///67C5E558540803
+        ///C5F558DF
+        ///C4A155586C3A12
+        ///C5F558FC
+        ///67C5D558540803
+        ///C5ED58DD
+        ///C4A16D [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string mnemonic_avx_64bit {
+            get {
+                return ResourceManager.GetString("mnemonic_avx_64bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   8B0C00
         ///8B4C0001
         ///8B8C00E8030000

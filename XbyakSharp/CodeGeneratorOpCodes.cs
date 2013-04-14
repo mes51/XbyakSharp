@@ -98,7 +98,7 @@ namespace XbyakSharp
             Db(unchecked((uint)imm), size);
         }
 
-        public void poo(IOperand op)
+        public void pop(IOperand op)
         {
             OpPushPop(op, (int)BinToHex.B10001111, 0, (int)BinToHex.B01011000);
         }
@@ -149,46 +149,43 @@ namespace XbyakSharp
                 addr = (Address)reg2;
                 code = (byte)BinToHex.B10100000;
             }
-            else
+            else if (reg1.IsMEM() && reg2.IsREG() && reg2.IDX == 0)
             {
-                if (reg1.IsMEM() && reg2.IsREG() && reg2.IDX == 0)
+                r = reg2.ToReg();
+                addr = (Address)reg1;
+                code = (byte)BinToHex.B10100010;
+            }
+            if (Environment.Is64BitProcess)
+            {
+                if (addr != null && addr.Is64BitDisp)
                 {
-                    r = reg2.ToReg();
-                    addr = (Address)reg1;
-                    code = (byte)BinToHex.B10100010;
-                }
-                if (Environment.Is64BitProcess)
-                {
-                    if (addr != null && addr.Is64BitDisp)
+                    if (code != 0)
                     {
-                        if (code != 0)
-                        {
-                            Rex(r);
-                            Db(reg1.IsREG(8) ? 0xA0 : reg1.IsREG() ? 0xA1 : reg2.IsREG(8) ? 0xA2 : 0xA3);
-                            Db(addr.Disp, 8);
-                        }
-                        else
-                        {
-                            throw new ArgumentException("reg1 and reg2 are bad combination");
-                        }
+                        Rex(r);
+                        Db(reg1.IsREG(8) ? 0xA0 : reg1.IsREG() ? 0xA1 : reg2.IsREG(8) ? 0xA2 : 0xA3);
+                        Db(addr.Disp, 8);
                     }
                     else
                     {
-                        OpRM_RM(reg1, reg2, (int)BinToHex.B10001000);
+                        throw new ArgumentException("reg1 and reg2 are bad combination");
                     }
                 }
                 else
                 {
-                    if (code != 0 && addr.IsOnlyDisp)
-                    {
-                        Rex(r, addr);
-                        Db(code | (r.IsBit(8) ? 0 : 1));
-                        Dd(unchecked((uint)addr.Disp));
-                    }
-                    else
-                    {
-                        OpRM_RM(reg1, reg2, (int)BinToHex.B10001000);
-                    }
+                    OpRM_RM(reg1, reg2, (int)BinToHex.B10001000);
+                }
+            }
+            else
+            {
+                if (code != 0 && addr.IsOnlyDisp)
+                {
+                    Rex(r, addr);
+                    Db(code | (r.IsBit(8) ? 0 : 1));
+                    Dd(unchecked((uint)addr.Disp));
+                }
+                else
+                {
+                    OpRM_RM(reg1, reg2, (int)BinToHex.B10001000);
                 }
             }
         }
@@ -1584,22 +1581,22 @@ namespace XbyakSharp
             OpR_ModM(op, 8, 0, 0x0F, (int)BinToHex.B10010000 | 4);
         }
 
-        private void cmovne(Reg32e reg, IOperand op)
+        public void cmovne(Reg32e reg, IOperand op)
         {
             OpModRM(reg, op, op.IsREG(i32e), op.IsMEM(), 0x0F, (int)BinToHex.B01000000 | 5);
         }
 
-        private void jne(string label, LabelType type = LabelType.Auto)
+        public void jne(string label, LabelType type = LabelType.Auto)
         {
             OpJmp(label, type, 0x75, 0x85, 0x0F);
         }
 
-        private void setne(IOperand op)
+        public void setne(IOperand op)
         {
             OpR_ModM(op, 8, 0, 0x0F, (int)BinToHex.B10010000 | 5);
         }
 
-        private void cmovnz(Reg32e reg, IOperand op)
+        public void cmovnz(Reg32e reg, IOperand op)
         {
             OpModRM(reg, op, op.IsREG(i32e), op.IsMEM(), 0x0F, (int)BinToHex.B01000000 | 5);
         }
@@ -4117,12 +4114,12 @@ namespace XbyakSharp
             OpAVX_X_X_XM(xmm, xmm, op, AVXType.Mm_0F38 | AVXType.Pp_66, 0x2B, false, -1);
         }
 
-        public void vpadDb(Xmm xm1, Xmm xm2, IOperand op)
+        public void vpaddb(Xmm xm1, Xmm xm2, IOperand op)
         {
             OpAVX_X_X_XM(xm1, xm2, op, AVXType.Mm_0F | AVXType.Pp_66, 0xFC, false, -1);
         }
 
-        public void vpadDb(Xmm xmm, IOperand op)
+        public void vpaddb(Xmm xmm, IOperand op)
         {
             OpAVX_X_X_XM(xmm, xmm, op, AVXType.Mm_0F | AVXType.Pp_66, 0xFC, false, -1);
         }
