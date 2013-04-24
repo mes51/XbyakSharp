@@ -83,6 +83,7 @@
     <Compile Include="CodeGenerator.cs" />
     <Compile Include="CodeGeneratorOpCodes.cs" />
     <Compile Include="CodeGeneratorRegisterFields.cs" />
+    <Compile Include="CPUID.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Label.cs" />
